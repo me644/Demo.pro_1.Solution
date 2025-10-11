@@ -1,0 +1,56 @@
+﻿@using Demo.PLL.DTO_S
+@model IEnumerable<Depa_Dots>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="my-3">ALL Departments</h1>
+
+<br>
+<a asp-controller="Departemnt" asp-action="Create" \class="btn btn-primary my-3"> Create new Department </a>
+
+
+@if (Model.Any())
+{
+    <table class=" table table-striped table-hover mt-2 ">
+        <thead class=" text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(d => d.Code)</th>
+                <th>@Html.DisplayNameFor(d => d.name)</th> 
+                <th>@Html.DisplayNameFor(d => d.Created)</th>
+
+            </tr>
+        </thead>
+
+
+
+
+        <tbody class=" text-center">
+
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>@d.Code</td>
+                    <td>@d.name</td>
+                    <td>@d.Created</td>
+                    <td><a class="btn btn-primary" asp-controller="Departemnt" asp-action="Details" asp-route-ID="@d.id"><i class=" fas fa-eye"></i> Details</a></td>
+                    <td><a class="btn btn-success" asp-controller="Departemnt" asp-action="Edit" asp-route-ID="@d.id">    <i class=" fas fa-Edit"> </i> Edit </a> </td>
+                    <td><a class="btn btn-danger" asp-controller="Departemnt" asp-action="Delete ">Delete</a><i class=" fas fa-trash"></i></td>
+
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert-info mt-3">
+        <h2>NO Departments found!!</h2>
+    </div>
+
+}
+
