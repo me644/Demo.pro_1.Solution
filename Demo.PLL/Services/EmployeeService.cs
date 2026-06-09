@@ -11,34 +11,59 @@ using System.Text;
 using System.Threading.Tasks;
 using Demo.DAL.Emp_Module;
 using Demo.DAL.Data.Repository;
+using System.Net.Http.Headers;
+using Demo.PLL.Services.Attachments;
 
 namespace Demo.PLL.Services
 {
-    public class EmployeeService(EmployeeRepository _ER,IMapper  _mapper)
+    public class EmployeeService(IAttachment _attachment,IUnitOfWork Uw, IMapper  _mapper)
     {
 
        
 
-        public int Update(EmpUpdatedDto_s U)
+        public int  Update(EmpUpdatedDto_s U)
         {
 
-            return  _ER.update( _mapper.Map<Employee>(U));
+             Uw._employeeRepository. update( _mapper.Map<Employee>(U));
+            return Uw.SaveChanges();
+
 
         }
 
         public int Create(CreateDto_s C)
         {
+            var e = _mapper.Map<CreateDto_s, Employee>(C);
 
+            if (C.Image is not null)
+            {
+                string file_name = _attachment.Upload(C.Image,"Images");
+                e.ImageName = file_name;
 
-            var e=   _mapper.Map<CreateDto_s,Employee>(C); //_ER.Add(_mapper.Map<Employee>(C));
-            return _ER.Add(e);
+            }
+                 //_ER.Add(_mapper.Map<Employee>(C));
+                 
+            Uw._employeeRepository.Add(e);
+
+            return Uw.SaveChanges();
         }
+
+
+        //public IEnumerable<EmpDto_s> GetAll()
+        //{
+
+        //    _ER.Get_All(E=>new EmpDto_s()
+        //    {
+
+        //        Address= E.Address,
+
+        //    })
+        //}
 
         public IEnumerable<EmpDto_s> GetAll()
         {
 
-           var empls= _ER.Get_All();
-            return empls.Select(e => _mapper.Map<EmpDto_s>(e));//employee => new EmpDto_s()
+            var empls = Uw._employeeRepository.Get_All().ToList();
+            return empls.Select(e => _mapper.Map<EmpDto_s>(e)).ToList();//employee => new EmpDto_s()
             //{
 
 
@@ -53,19 +78,23 @@ namespace Demo.PLL.Services
             //    Phone_NUMBER = employee.Phone_NUMBER,
             //    Type = employee.Type.ToString()
 
-                //});
+            //});
 
 
 
-            }
+        }
 
-       
+
         public EmpDetalisDto_s ?GetById(int id)
         {
 
-          var e=  _ER.Get_byID(id);
+          var e=  Uw._employeeRepository.Get_byID(id);
+
+           
 
             return e is null ? null :  _mapper.Map<EmpDetalisDto_s>(e);
+
+
         }
 
   
@@ -74,7 +103,7 @@ namespace Demo.PLL.Services
         {
             
 
-            var e= (_ER.Get_byID(id));
+            var e= (Uw._employeeRepository.Get_byID(id));
            if((e) is null){
             
             
@@ -84,7 +113,8 @@ namespace Demo.PLL.Services
             else
             {
            e.Is_delated=true;
-                return _ER.update(e)>0?true:false;
+                Uw._employeeRepository.update(e);
+                return Uw.SaveChanges()>0?true:false;
 
 
 

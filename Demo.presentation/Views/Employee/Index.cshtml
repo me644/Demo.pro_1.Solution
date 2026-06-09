@@ -4,10 +4,16 @@
 @using Demo.PLL.DDTO_S;
 @model IEnumerable<EmpDto_s>
 @{
-    
+    var empl = ViewData["Message"] as EmpDto_s; 
 
     ViewData["Title"] = "Index";
 }
+
+
+<div  class="alert alert danger">
+
+    @empl.Name
+</div>
 <h1>All Employees</h1>
 <br />
 <br />
@@ -18,11 +24,15 @@
     <table class="table table-striped table-hover mt-3">
         <thead class="text-center">
             <tr>
+                <th>@Html.DisplayNameFor(e => e.ImageName)</th>
                 <th>@Html.DisplayNameFor(e => e.Name)</th>
                 <th>@Html.DisplayNameFor(e => e.Email)</th>
                 <th>@Html.DisplayNameFor(e => e.Type)</th>
                 <th>@Html.DisplayNameFor(e => e.Age)</th>
-                
+
+
+                <th>@Html.DisplayNameFor(e => e.department) </th>
+
                 <th>@Html.DisplayNameFor(e => e.Is_Active)</th>
                 <th>@Html.DisplayNameFor(e => e.gender)</th>
                 <th>Details </th>
@@ -35,13 +45,22 @@
             {
                 <tr>
 
+                    <td>   <img   class="rounded"  width="40"height="35" src="~/Files/Images/@(employee.ImageName is not null ? employee.ImageName : "user.png")" />  </td>
                     <td>@employee.Name</td>
                     <td>@employee.Email</td>
                     <td>@employee.Type</td>
                     <td>@employee.Age</td>
+                    <td>@(employee.department != null ? employee.department : "not found")</td> 
+
                    <td> <i class="@(employee.Is_Active ? "fa-solid fa-circle-check" : "fa-solid fa-circle-xmark")"></i>
                     </td>
                     <td>@employee.gender</td>
+
+                    @* @{Html.RenderPartial("_PartialViewButtons",employee.id)}; *@
+                    
+                   
+                   @*  <partial name="_PartialViewButtons " model="employee.id" ></partial>
+ *@
 
                     <td>
                         <a class="btn btn-primary" asp-action="Details" asp-route-id="@employee.id">

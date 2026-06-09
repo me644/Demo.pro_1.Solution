@@ -1,0 +1,40 @@
+﻿@using Demo.presentation.VIEW_Model
+@model  ResetPasswordViewModel
+
+
+
+@{
+    ViewData["Title"] = "ResetPasword";
+    Layout = "~/Views/Shared/_AuthenLayout1.cshtml";
+}
+
+<h1>ResetPasword</h1>
+<div class="main-w3layouts wrapper">
+    <h1>Creative SignUp Form</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+
+
+              
+
+                <input asp-for="Password" placeholder="NewPassword" />
+                <span asp-validation-for="Password" class=" text-danger"></span>
+
+
+
+                <input asp-for="ConfirmPassword" placeholder="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword" class=" text-danger"></span>
+
+
+
+                <input type="submit" value="Submit">
+            </form>
+            <p>Don`t  have an Account? <a asp-action="Register"> Register Now!</a></p>
+
+            <p>Forget password? <a asp-action="ForgetPassword"> Reset_Now</a></p>
+
+        </div>
+    </div>
+

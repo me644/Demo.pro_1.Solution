@@ -35,15 +35,16 @@ namespace Demo.PLL.DDTO_S
 
         public string? Phone_NUMBER { get; set; }
 
-
+        public string ?department { get; set; }
 
         [Display(Name="Employye Type")]
         public String Type { get; set; }
 
 
-
-
+      
         
         public String gender { get; set; }
+
+        public string? ImageName { get; set; }
     }
 }

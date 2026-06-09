@@ -13,10 +13,10 @@ namespace Demo.DAL.Data.Configuration
     {
          void IEntityTypeConfiguration<Departemnt>.Configure(EntityTypeBuilder<Departemnt> builder)
         {
-            builder.Property(d => d.id).UseIdentityColumn(10, 10);
+            builder.Property(d => d.id);
             builder.Property(d => d.name).HasColumnType("varchar(20");
             builder.Property(d => d.code).HasColumnType("varchar(20");
-
+              
 
 
            base.Configure(builder);

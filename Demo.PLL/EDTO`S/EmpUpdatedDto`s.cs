@@ -13,7 +13,7 @@ namespace Demo.PLL.EDTO_S
     {
 
 
-        public int id {  get; set; }
+        public int ?id {  get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [MaxLength(length: 15, ErrorMessage = "max should be 15")]

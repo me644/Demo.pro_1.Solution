@@ -1,7 +1,12 @@
 ﻿@using Demo.DAL.Emp_Module
 @using Demo.PLL.EDTO_S;
 @using Demo.DAL.Shared;
-@model  CreateDto_s;
+
+
+@using Demo.presentation.VIEW_Model
+
+@model EmployeeViewModel
+
 
 
 
@@ -14,71 +19,19 @@
     <h1 class="col-8 my-4">Create Employee</h1>
     <form method="post" asp-controller="Employee" asp-action="Create" class=" row col-8" enctype="multipart/form-data">
          <div asp-validation-summary="ModelOnly"></div>
-        <div class="form-group mb-3 col-6">
-            <label class="form-label" asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group mb-3 col-6">
-            <label class="form-label" asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="form-group mb-3 col-6">
-            <label class="form-label" asp-for="Address"></label>
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
-        </div>
-        <div class="form-group mb-3 col-6">
-            <label class="form-label" asp-for="Phone_NUMBER"></label>
-            <input asp-for="Phone_NUMBER" class="form-control" />
-            <span asp-validation-for="Phone_NUMBER" class="text-danger"></span>
-        </div>
-        <div class="form-group mb-3 col-6">
-           <label class="form-label" asp-for="Age"></label>
-            <input asp-for="Age" class="form-control" />
-            <span asp-validation-for="Age" class="text-danger"></span>
-        </div>
-
-
-
-
-        <div class="form-group mb-3 col-6">
-      
-           <label class="col-form-label" asp-for="Type"></label>
-           <select asp-for="Type" asp-items="Html.GetEnumSelectList<Employe_Type>()">
-           <option value="">select Employe_type</option>
-           </select>
-            <span  asp-validation-for="Type"  class="text-danger"></span>
-        </div>
-
-
-        <div class="form-group mb-3 col-6">
-            <input asp-for="Is_Active" class="form-check-input" />
-            <label class="col-form-label" asp-for="Is_Active"></label>
-        </div>
-        
-
-        <div class="form-group mb-3 col-6">
-
-            <label  class="col-form-label" asp-for="gender"></label>
-            @foreach(var g in Enum.GetValues<Gender>())
-            {
-                <div class="form-check form-check-inline"> 
-                <input   asp-for="gender" type ="radio"  value="@g"  >
-                <label class="from form-check-label">@g</label>
-
-                </div>
-            }
-        </div>
-       
-
+        <partial name="Partial_view/_Parital_CE_VIEW" model="Model"></partial>
          
         <div class="mt-4 m-auto">
-            <input class="btn btn-primary" type="submit" value="Save" />
+            <button type="submit" class="btn btn-primary">Save</button>
             <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-dark">Back to list</a>
         </div>
     </form>
 </div>
 
+@section  validation{
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

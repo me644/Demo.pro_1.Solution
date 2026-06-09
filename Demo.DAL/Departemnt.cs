@@ -1,4 +1,5 @@
-﻿using Demo.DAL.Shared;
+﻿using Demo.DAL.Emp_Module;
+using Demo.DAL.Shared;
 
 namespace Demo.DAL
 {
@@ -9,5 +10,8 @@ namespace Demo.DAL
         public string code { get; set; } = null!;// to remove the_____compiler warnning  
 
         public string name { get; set; }= null!;
+
+
+        public    ICollection<Employee> Employees = new HashSet<Employee>();
     }
 }

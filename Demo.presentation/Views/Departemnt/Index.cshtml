@@ -34,8 +34,7 @@
                     <td>@d.Code</td>
                     <td>@d.name</td>
                     <td>@d.Created</td>
-                    <td><a class="btn btn-primary" asp-controller="Departemnt" asp-action="Details" asp-route-ID="@d.id"><i class=" fas fa-eye"></i> Details</a></td>
-                    <td><a class="btn btn-success" asp-controller="Departemnt" asp-action="Edit" asp-route-ID="@d.id">    <i class=" fas fa-Edit"> </i> Edit </a> </td>
+                    <partial name="_PartialViewButtons" model=d.id></partial>
                     <td><a class="btn btn-danger" asp-controller="Departemnt" asp-action="Delete ">Delete</a><i class=" fas fa-trash"></i></td>
 
                 </tr>

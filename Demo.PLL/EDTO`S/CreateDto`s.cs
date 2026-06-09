@@ -1,5 +1,6 @@
 ﻿ using Demo.DAL.Emp_Module;
 using Demo.DAL.Shared;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace Demo.PLL.EDTO_S
     public class CreateDto_s
     {
 
-
+    
         [Required(ErrorMessage="Name is required")]
         [MaxLength(length:15,ErrorMessage ="max should be 15")]
         [MinLength(length: 5, ErrorMessage = "min should be 4")]
@@ -41,5 +42,10 @@ namespace Demo.PLL.EDTO_S
         public Employe_Type Type { get; set; }
 
         public Gender gender { get; set; }
+
+        public int ?Department_ID { get; set; }
+
+
+        public  IFormFile? Image { get; set; }
     }
 }

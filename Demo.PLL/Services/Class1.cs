@@ -4,7 +4,7 @@ using Demo.DAL.Data.Repository;
 using Demo.PLL.DTO_S;
 using Demo.PLL.Factory;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+//using Microsoft.Identity.Client;
 using System.Reflection.Metadata.Ecma335;
 using System.Transactions;
 

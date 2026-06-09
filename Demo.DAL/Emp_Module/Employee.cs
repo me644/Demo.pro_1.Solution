@@ -34,5 +34,14 @@ namespace Demo.DAL.Emp_Module
         public Employe_Type Type {  get; set; }
 
         public Gender gender { get; set; }
+
+
+
+
+        public  Departemnt? departemnt { get; set; }
+
+        public int? departmentiD { get; set; }
+        public string? ImageName { get; set; }    
+     
     }
 }

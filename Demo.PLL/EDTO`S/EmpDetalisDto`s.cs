@@ -38,5 +38,8 @@ namespace Demo.PLL.DDTO_S
         public string Type { get; set; }
 
         public string gender { get; set; }
+
+        public string ? ImageName { get; set; }
+
     }
 }

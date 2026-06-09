@@ -14,9 +14,9 @@ namespace Demo.DAL.Data.Configuration
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<T> builder)
         {
 
-            builder.Property(e => e.Created_oN).HasDefaultValueSql("GetDate()");
+            builder.Property(e => e.Created_oN).HasDefaultValueSql("Current_TIMESTAMP");
 
-            builder.Property(e => e.Modified_oN).HasComputedColumnSql("GetDate()");
+            builder.Property(e => e.Modified_oN).HasDefaultValueSql("Current_TIMESTAMP");
 
         }
     }
